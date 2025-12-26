@@ -1,0 +1,123 @@
+:root {
+    --couleur-primaire: #2c3e50;
+    --couleur-accent: #3498db;
+    --couleur-fond: #f4f7f6;
+    --couleur-texte: #333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    margin: 0;
+    padding: 20px;
+}
+
+.conteneur {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.carte {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+/* Style du Titre */
+    h1 {
+    text-align: center;
+    color: var(--couleur-primaire);
+    }
+
+/* Style du Profil */
+#infos-etudiant {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.photo-profil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--couleur-accent);
+}
+
+/* Style de l'Application */
+#formulaire-tache {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#titre-tache {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.filtres {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 5px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.element-tache {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    transition: 0.3s;
+}
+
+.terminee {
+    text-decoration: line-through;
+    color: gray;
+    background-color: #f9f9f9;
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--couleur-accent);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+button:hover { opacity: 0.8; }
+
+/* Nouveau: style pour les actions de tâche */
+.actions {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    padding: 7px 10px;
+    border-radius: 4px;
+}
+
+.btn-mark.en-cours {
+    background-color: #3498db; /* bleu */
+}
+
+.btn-mark.termine {
+    background-color: #2ecc71; /* vert */
+}
+
+.titre-actions {
+    margin: 10px 0 6px 200px;
+    font-size: 1rem;
+    color: var(--couleur-primaire);
+}

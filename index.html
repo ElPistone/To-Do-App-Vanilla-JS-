@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Tâches - MIAGE L3</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Mon Application To-Do App</h1>
+    </header>
+
+    <main class="conteneur">
+        <section id="section-profil" class="carte">
+            <div id="infos-etudiant"></div>
+        </section>
+
+        <section class="application-taches carte">
+            <h2>Ma Liste de Tâches</h2>
+            
+            <form id="formulaire-tache">
+                <input type="text" id="titre-tache" placeholder="Ajouter une tâche (ex: Réviser HTML/CSS)..." required>
+                <select id="categorie-tache" required>
+                    <option value="" disabled selected>Choisir une catégorie...</option><hr><hr><hr>
+                    <option value="Études">Études</option>
+                    <option value="Projet">Projet</option>
+                    <option value="Personnel">Personnel</option>
+                </select>
+                <button type="submit">Ajouter</button>
+            </form>
+
+            <div class="filtres">
+                <button onclick="filtrerTaches('toutes')">Toutes</button>
+                <button onclick="filtrerTaches('en-cours')">En cours</button>
+                <button onclick="filtrerTaches('terminees')">Terminées</button>
+                <h3 class="titre-actions">Marquer comme terminées</h3>
+            </div>
+
+            <ul id="liste-taches"></ul>
+        </section>
+    </main>
+
+</body>
+</html>
