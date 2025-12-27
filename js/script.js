@@ -7,7 +7,7 @@ const donneesEtudiant = {
     matricule: "123456789",
     filiere: "Licence 3 MIAGE Groupe 2",
     objectif: "Maîtriser le développement web pour le projet final UNC.",
-    photo: "assets/photo1.webp" 
+    photo: "assets/profil.jpeg" 
 };
 
 // RECUPERATION DES ELEMENTS DU DOM
@@ -19,6 +19,21 @@ const formulaire = document.getElementById('formulaire-tache');
  * Le conteneur d'affichage des tâches
  */
 const affichageListe = document.getElementById('liste-taches');
+
+// Éléments du formulaire pour contrôler l'état du bouton Ajouter
+const inputTitre = document.getElementById('titre-tache');
+const selectCategorie = document.getElementById('categorie-tache');
+const btnAjouter = document.getElementById('btn-ajouter');
+
+function majEtatBouton() {
+    const titreVal = inputTitre.value.trim();
+    const categorieVal = selectCategorie.value;
+    btnAjouter.disabled = !(titreVal && categorieVal);
+}
+
+// Écouteurs pour mettre à jour l'état du bouton en temps réel
+inputTitre.addEventListener('input', majEtatBouton);
+selectCategorie.addEventListener('change', majEtatBouton);
 
 /** 
  * Fonction pour afficher les informations de mon profil étudiant
@@ -70,8 +85,8 @@ function rafraichirListe(filtre = 'toutes') {
         li.innerHTML = `
             <span>[${tache.categorie}] : ${tache.texte}</span>
             <div class="actions">
-                <button class="btn-delete" onclick="supprimerTache(${tache.id})">X</button>
                 <button class="btn-mark ${tache.estTerminee ? 'termine' : 'en-cours' }" onclick="basculerEtatTache(${tache.id})">✔</button>
+                <button class="btn-delete" onclick="supprimerTache(${tache.id})">x</button>
             </div>
         `;
         affichageListe.appendChild(li);
@@ -93,6 +108,8 @@ formulaire.onsubmit = (event) => {
     listeTaches.push(nouvelleTache);
     rafraichirListe();
     formulaire.reset();
+    // Après réinitialisation du formulaire, désactiver de nouveau le bouton
+    majEtatBouton();
 };
 
 /**
@@ -122,8 +139,23 @@ function supprimerTache (idATraiter) {
  */
 function filtrerTaches (filtre) {
     rafraichirListe(filtre);
+    if (filtre === 'toutes') {
+        document.getElementById('all').classList.add('active');
+        document.getElementById('enCours').classList.remove('active');
+        document.getElementById('finished').classList.remove('active');
+    } else if (filtre === 'en-cours') {
+        document.getElementById('all').classList.remove('active');
+        document.getElementById('enCours').classList.add('active');
+        document.getElementById('finished').classList.remove('active');
+    } else if (filtre === 'terminees') {
+        document.getElementById('all').classList.remove('active');
+        document.getElementById('enCours').classList.remove('active');
+        document.getElementById('finished').classList.add('active');
+    }
 }
 
 // Initialisation au démarrage
 afficherProfil();
 rafraichirListe();
+// Initialisation de l'état du bouton au chargement
+majEtatBouton();

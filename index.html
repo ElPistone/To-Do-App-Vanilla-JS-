@@ -28,13 +28,13 @@
                     <option value="Projet">Projet</option>
                     <option value="Personnel">Personnel</option>
                 </select>
-                <button type="submit">Ajouter</button>
+                <button type="submit" id="btn-ajouter" disabled>Ajouter</button>
             </form>
 
             <div class="filtres">
-                <button onclick="filtrerTaches('toutes')">Toutes</button>
-                <button onclick="filtrerTaches('en-cours')">En cours</button>
-                <button onclick="filtrerTaches('terminees')">Terminées</button>
+                <button onclick="filtrerTaches('toutes')" class="active" id="all">Toutes</button>
+                <button onclick="filtrerTaches('en-cours')" id="enCours">En cours</button>
+                <button onclick="filtrerTaches('terminees')" id="finished">Terminées</button>
                 <h3 class="titre-actions">Marquer comme terminées</h3>
             </div>
 

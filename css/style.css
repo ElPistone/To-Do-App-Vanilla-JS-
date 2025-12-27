@@ -1,8 +1,9 @@
 :root {
     --couleur-primaire: #2c3e50;
-    --couleur-accent: #3498db;
+    --couleur-accent: #e6cfb3;
     --couleur-fond: #f4f7f6;
     --couleur-texte: #333;
+    --couleur-boutonPrincipal: #3498db;
 }
 
 body {
@@ -87,7 +88,7 @@ ul {
 
 button {
     cursor: pointer;
-    background-color: var(--couleur-accent);
+    background-color: var(--couleur-boutonPrincipal);
     color: white;
     border: none;
     padding: 8px 15px;
@@ -103,21 +104,31 @@ button:hover { opacity: 0.8; }
 }
 
 .btn-delete {
-    background-color: #e74c3c;
     padding: 7px 10px;
     border-radius: 4px;
+    color: white;
+    background-color: red;
 }
 
 .btn-mark.en-cours {
-    background-color: #3498db; /* bleu */
+    background-color: #2ecc71;
 }
 
 .btn-mark.termine {
-    background-color: #2ecc71; /* vert */
+    background-color: var(--couleur-boutonPrincipal); 
 }
 
 .titre-actions {
-    margin: 10px 0 6px 200px;
+    margin: 10px 0 6px 250px;
     font-size: 1rem;
     color: var(--couleur-primaire);
+}
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.active {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
