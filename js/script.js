@@ -7,6 +7,7 @@ const donneesEtudiant = {
     matricule: "123456789",
     filiere: "Licence 3 MIAGE Groupe 2",
     objectif: "Maîtriser le développement web pour le projet final UNC.",
+    email: "fatoumata.binta.diallo@univ-nongo.gn",
     photo: "assets/profil.jpeg" 
 };
 
@@ -46,6 +47,7 @@ function afficherProfil() {
             <h3>${donneesEtudiant.prenom} ${donneesEtudiant.nom}</h3>
             <p><strong>Matricule:</strong> ${donneesEtudiant.matricule}</p>
             <p><strong>Filière:</strong> ${donneesEtudiant.filiere}</p>
+            <p><strong>Email:</strong> <em>${donneesEtudiant.email}</em></p>
             <p><em>"${donneesEtudiant.objectif}"</em></p>
         </div>
     `;

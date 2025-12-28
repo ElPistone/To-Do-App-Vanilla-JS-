@@ -1,7 +1,7 @@
 :root {
     --couleur-primaire: #2c3e50;
-    --couleur-accent: #e6cfb3;
-    --couleur-fond: #f4f7f6;
+    --couleur-accent: beige;
+    --couleur-fond:  beige;
     --couleur-texte: #333;
     --couleur-boutonPrincipal: #3498db;
 }
@@ -131,4 +131,45 @@ button:disabled {
 .active {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+/* Footer */
+.site-footer {
+    background: linear-gradient(180deg, #ffffff, #f2f4f6);
+    border-top: 1px solid #e6e9eb;
+    padding: 20px 0 10px;
+    color: var(--couleur-texte);
+    margin-top: 20px;
+}
+.site-footer .footer-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.site-footer .footer-col h4 {
+    margin: 0 0 6px 0;
+    color: var(--couleur-primaire);
+}
+.site-footer .footer-col p {
+    margin: 0; 
+    font-size: 0.95rem;
+}
+.site-footer a {
+    color: var(--couleur-boutonPrincipal);
+    text-decoration: none;
+}
+.site-footer a:hover { text-decoration: underline; }
+.footer-bottom {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    .site-footer .footer-container {
+        flex-direction: column;
+        gap: 12px;
+    }
 }
