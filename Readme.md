@@ -5,7 +5,7 @@ Une application Web simple pour gérer une liste de tâches (To-Do). Ce projet c
 ### **Fonctionnalités**
 - Ajouter une tâche
 - Marquer / supprimer une tâche
-- Interface front-end légère (HTML/CSS/JS)
+- Interface front-end légère (HTML/CSS/JS) sans utilisation d'aucune framework
 
 ### **Structure du projet**
 - `index.html` — page principale de l'application
