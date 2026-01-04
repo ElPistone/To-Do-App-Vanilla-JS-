@@ -11,7 +11,7 @@ body {
     background-color: var(--couleur-fond);
     color: var(--couleur-texte);
     margin: 0;
-    padding: 20px;
+    padding: 0px;
 }
 
 .conteneur {
@@ -110,6 +110,43 @@ button:hover { opacity: 0.8; }
     background-color: red;
 }
 
+.btn-edit {
+    padding: 7px 10px;
+    border-radius: 4px;
+    color: white;
+    background-color: orange;
+}
+
+.edit-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+.edit-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.edit-select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.btn-save {
+    background-color: #2ecc71;
+    padding: 7px 10px;
+    border-radius: 4px;
+    color: white;
+}
+.btn-cancel {
+    background-color: #95a5a6;
+    padding: 7px 10px;
+    border-radius: 4px;
+    color: white;
+}
+
 .btn-mark.en-cours {
     background-color: #2ecc71;
 }
@@ -131,6 +168,9 @@ button:disabled {
 .active {
     background-color: #ccc;
     cursor: not-allowed;
+}
+.titre-actions {
+    color: var(--couleur-boutonPrincipal);
 }
 
 /* Footer */

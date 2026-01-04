@@ -44,7 +44,7 @@ function afficherProfil() {
     conteneurProfil.innerHTML = `
         <img src="${donneesEtudiant.photo}" alt="Avatar" class="photo-profil">
         <div>
-            <h3>${donneesEtudiant.prenom} ${donneesEtudiant.nom}</h3>
+            <h2>${donneesEtudiant.nom} ${donneesEtudiant.prenom}</h2>
             <p><strong>Matricule:</strong> ${donneesEtudiant.matricule}</p>
             <p><strong>Filière:</strong> ${donneesEtudiant.filiere}</p>
             <p><strong>Email:</strong> <em>${donneesEtudiant.email}</em></p>
@@ -88,6 +88,7 @@ function rafraichirListe(filtre = 'toutes') {
             <span>[${tache.categorie}] : ${tache.texte}</span>
             <div class="actions">
                 <button class="btn-mark ${tache.estTerminee ? 'termine' : 'en-cours' }" onclick="basculerEtatTache(${tache.id})">✔</button>
+                ${!tache.estTerminee ? `<button class="btn-edit" onclick="editerTache(${tache.id})">✎</button>` : ''}
                 <button class="btn-delete" onclick="supprimerTache(${tache.id})">x</button>
             </div>
         `;
@@ -115,7 +116,7 @@ formulaire.onsubmit = (event) => {
 };
 
 /**
- * Fonction pour Basculer l'état d'une tâche (terminée/en cours)
+ * @description - Fonction pour Basculer l'état d'une tâche (terminée/en cours)
  * @param { number } idATraiter - L'identifiant de la tâche à modifier
  */
 function basculerEtatTache (idATraiter) {
@@ -126,7 +127,7 @@ function basculerEtatTache (idATraiter) {
 };
 
 /**
- * Fonction pour Supprimer une tâche de la liste
+ * @description - Fonction pour Supprimer une tâche de la liste
  * @param { number } idATraiter - L'identifiant de la tâche à supprimer
  */
 function supprimerTache (idATraiter) {
@@ -134,9 +135,69 @@ function supprimerTache (idATraiter) {
     rafraichirListe();
 };
 
+/**
+ * @description - Fonction pour éditer le texte d'une tâche (via prompt simple)
+ * @param { number } idATraiter - L'identifiant de la tâche à modifier
+ */
+function editerTache(idATraiter) {
+    const tacheCible = listeTaches.find(t => t.id === idATraiter);
+    if (!tacheCible) return;
+    const btn = document.querySelector(`[onclick="editerTache(${idATraiter})"]`);
+    if (!btn) return;
+    const li = btn.closest('li');
+    if (!li) return;
+
+    // Création du formulaire d'édition inline
+    li.innerHTML = `
+        <div class="edit-form">
+            <input type="text" id="edit-text-${idATraiter}" class="edit-input" value="${escapeHtml(tacheCible.texte)}" />
+            <select id="edit-cat-${idATraiter}" class="edit-select">
+                <option value="Études">Études</option>
+                <option value="Projet">Projet</option>
+                <option value="Personnel">Personnel</option>
+            </select>
+            <div class="actions">
+                <button class="btn-save" id="save-${idATraiter}">✔</button>
+                <button class="btn-cancel" id="cancel-${idATraiter}">✖</button>
+            </div>
+        </div>
+    `;
+
+    // Pré-remplir la catégorie
+    const selectEl = document.getElementById(`edit-cat-${idATraiter}`);
+    if (selectEl) selectEl.value = tacheCible.categorie;
+
+    // Gestion du bouton Sauvegarder
+    document.getElementById(`save-${idATraiter}`).addEventListener('click', () => {
+        const nouveauTexte = document.getElementById(`edit-text-${idATraiter}`).value.trim();
+        const nouvelleCategorie = document.getElementById(`edit-cat-${idATraiter}`).value;
+        if (!nouveauTexte) {
+            alert('Le texte de la tâche ne peut pas être vide.');
+            return;
+        }
+        listeTaches = listeTaches.map(t => t.id === idATraiter ? {...t, texte: nouveauTexte, categorie: nouvelleCategorie} : t);
+        rafraichirListe();
+    });
+
+    // Annuler l'édition
+    document.getElementById(`cancel-${idATraiter}`).addEventListener('click', () => {
+        rafraichirListe();
+    });
+};
+
+// Petit utilitaire pour échapper du texte inséré dans les attributs value
+function escapeHtml(unsafe) {
+    return String(unsafe)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 // Filtrer les tâches affichées
 /**
- * Filtrer les tâches affichées selon le type de filtre sélectionné
+ * @description - Filtrer les tâches affichées selon le type de filtre sélectionné
  * @param {string} filtre - type de filtre à effectuer
  */
 function filtrerTaches (filtre) {
